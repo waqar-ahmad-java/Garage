@@ -27,7 +27,7 @@ public class ShortUrlServiceImpl implements ShortUrlService{
      // Check if the long URL already exists
         Optional<ShortUrl> existing = shortUrlRepository.findByLongUrl(shortUrlRequest.getLongUrl());
         if (existing.isPresent()) {
-            existing.get();
+//            existing.get();
             BeanUtils.copyProperties(existing.get(),response);
 
             return response;
