@@ -2,6 +2,8 @@ package com.waqar.ship.shorturl;
 
 import com.waqar.ship.shorturl.repository.ShortUrlRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.waqar.ship.shorturl.entity.ShortUrl;
@@ -48,16 +50,21 @@ public class ShortUrlServiceImpl implements ShortUrlService{
         return response;
 
     }
-    public ShortUrlResponse getLongUrl(String shortUrlRequest) {
-         ShortUrlResponse  response = new ShortUrlResponse();
-         
+
+    @Cacheable(value = "urlCache", key = "#shortUrlRequest")
+    @Override
+    public String getLongUrl(String shortUrlRequest) {
          Optional<ShortUrl> existing = shortUrlRepository.findByShortUrlHash(shortUrlRequest);
          if (existing.isPresent()) {
-             BeanUtils.copyProperties(existing.get(),response);
-             return response;
+             return existing.get().getLongUrl();
          }
-         response.setError("Short URL not found");
-         return response;
+         return "";
         
+    }
+
+    @Override
+    @CacheEvict(cacheNames = {"urlCache"}, allEntries = true)
+    public void evictCache() {
+        System.out.println("Cache cleared");
     }
 }

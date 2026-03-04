@@ -13,8 +13,11 @@ import com.waqar.ship.shorturl.entity.ShortUrl;
 @RestController
 public class ShortUrlController {
 
-    @Autowired
-    ShortUrlService shortUrlService;
+    private final ShortUrlService shortUrlService;
+
+    ShortUrlController(ShortUrlService shortUrlService) {
+        this.shortUrlService = shortUrlService;
+    }
 
     @PostMapping(value = "/create")
     public ResponseEntity<String> createUrl(@RequestBody ShortUrlRequest longUrl){
@@ -24,14 +27,20 @@ public class ShortUrlController {
 
     @GetMapping(value = "/{shortUrl}")
     public ResponseEntity<String> getUrl(@PathVariable String shortUrl){
-        ShortUrlResponse longUrl = shortUrlService.getLongUrl(shortUrl);
+        String longUrl = shortUrlService.getLongUrl(shortUrl);
 
-        if(longUrl.getError() != null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(longUrl.getError());
+        if("".equalsIgnoreCase(longUrl)){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("");
         }
         
         return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
-            .header("Location", longUrl.getLongUrl())
+            .header("Location", longUrl)
             .build();
+    }
+    @GetMapping(value = "/cache/evict")
+    public ResponseEntity<Object> getUrl(){
+        shortUrlService.evictCache();
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("");
     }
 }

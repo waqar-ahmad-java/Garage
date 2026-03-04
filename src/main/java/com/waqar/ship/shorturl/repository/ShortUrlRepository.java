@@ -18,6 +18,5 @@ public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long> {
 
     Optional<ShortUrl> findByLongUrl(String longUrl);
 
-    @QueryHints({@QueryHint(name = "org.hibernate.cacheable", value = "true")})
     Optional<ShortUrl> findByShortUrlHash(String hash);
 }

@@ -2,5 +2,6 @@ package com.waqar.ship.shorturl;
 
 public interface ShortUrlService {
     ShortUrlResponse createShortUrl(ShortUrlRequest longUrl);
-    ShortUrlResponse getLongUrl(String shortUrl);
+    String getLongUrl(String shortUrl);
+    void evictCache();
 }

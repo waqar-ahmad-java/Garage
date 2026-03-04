@@ -62,7 +62,16 @@
             <artifactId>ehcache</artifactId>
             <classifier>jakarta</classifier>
         </dependency>
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
+        </dependency>
 <!--        <dependency>-->
+<!--            <groupId>org.hibernate.orm</groupId>-->
+<!--            <artifactId>hibernate-jcache</artifactId>-->
+<!--        </dependency>-->
+
+        <!--        <dependency>-->
 <!--            <groupId>org.hibernate</groupId>-->
 <!--            <artifactId>hibernate-ehcache</artifactId>-->
 <!--            <version>5.6.15.Final</version>-->
