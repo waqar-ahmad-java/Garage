@@ -26,15 +26,15 @@ public class ShortUrlController {
     }
 
     @GetMapping(value = "/{shortUrl}")
-    public ResponseEntity<String> getUrl(@PathVariable String shortUrl){
-        String longUrl = shortUrlService.getLongUrl(shortUrl);
+    public ResponseEntity<String> getUrl(@PathVariable String shortUrl) throws InterruptedException {
+        ShortUrlResponse longUrl = shortUrlService.getLongUrl(shortUrl);
 
-        if("".equalsIgnoreCase(longUrl)){
+        if("".equalsIgnoreCase(longUrl.getLongUrl())){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("");
         }
         
         return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
-            .header("Location", longUrl)
+            .header("Location", longUrl.getLongUrl())
             .build();
     }
     @GetMapping(value = "/cache/evict")

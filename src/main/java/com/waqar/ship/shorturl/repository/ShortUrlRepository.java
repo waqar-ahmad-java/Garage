@@ -2,6 +2,7 @@ package com.waqar.ship.shorturl.repository;
 
 import com.waqar.ship.shorturl.entity.ShortUrl;
 import jakarta.persistence.QueryHint;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.QueryHints;
@@ -17,6 +18,5 @@ public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long> {
     Optional<ShortUrl> findByShortUrl(String shortUrl);
 
     Optional<ShortUrl> findByLongUrl(String longUrl);
-
     Optional<ShortUrl> findByShortUrlHash(String hash);
 }
