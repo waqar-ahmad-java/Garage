@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: shorturl
+
+  mvc:
+    apiversion:
+      supported:
+        - "1.0"
+        - "2.0"
+      default: "1.0"
+      use:
+        path-segment: 1
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shortUrl
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        generate_statistics: true
+
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
+    type: redis
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000ms
+
+logging:
+  level:
+    com.waqar.ship.shorturl: DEBUG
+    org.springframework.boot.actuator.autoconfigure.opentelemetry: DEBUG
+    org.springframework.boot.docker.compose: DEBUG
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0  # 100% sampling for development
+  otlp:
+    metrics:
+      export:
+        url: http://localhost:4318/v1/metrics
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          endpoint: http://localhost:4318/v1/traces
+    logging:
+      export:
+        otlp:
+          endpoint: http://localhost:4318/v1/logs
+  endpoints:
+    web:
+      exposure:
+        include: "*"
