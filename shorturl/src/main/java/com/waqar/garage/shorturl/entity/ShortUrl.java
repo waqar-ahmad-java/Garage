@@ -1,4 +1,4 @@
-package com.waqar.ship.shorturl.entity;
+package com.waqar.garage.shorturl.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

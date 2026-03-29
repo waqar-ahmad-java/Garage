@@ -1,4 +1,4 @@
-package com.waqar.ship.shorturl;
+package com.waqar.garage.shorturl;
 
 import lombok.Data;
 

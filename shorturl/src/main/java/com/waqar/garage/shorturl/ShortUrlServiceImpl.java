@@ -1,13 +1,13 @@
-package com.waqar.ship.shorturl;
+package com.waqar.garage.shorturl;
 
-import com.waqar.ship.shorturl.repository.ShortUrlRepository;
+import com.waqar.garage.shorturl.repository.ShortUrlRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.waqar.ship.shorturl.entity.ShortUrl;
+import com.waqar.garage.shorturl.entity.ShortUrl;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -25,11 +25,10 @@ public class ShortUrlServiceImpl implements ShortUrlService{
     @CachePut(value = "urlCache", key = "#result.getShortUrlHash()")
     @Override
     public ShortUrlResponse createShortUrl(ShortUrlRequest shortUrlRequest) {
-
         ShortUrlResponse response = new ShortUrlResponse();
 
      // Check if the long URL already exists
-        Optional<ShortUrl> existing = shortUrlRepository.findByLongUrl(shortUrlRequest.getLongUrl());
+        Optional<ShortUrl> existing = shortUrlRepository.findByLongUrl(shortUrlRequest.longUrl());
         if (existing.isPresent()) {
 //            existing.get();
             BeanUtils.copyProperties(existing.get(),response);
@@ -38,14 +37,14 @@ public class ShortUrlServiceImpl implements ShortUrlService{
         }
 
         // Generate a short URL (this is just an example, replace with your logic)
-        String shortUrl = "http://localhost:8080/api/1/url/"+shortUrlRequest.getLongUrl().hashCode();
+        String shortUrl = "http://localhost:8080/api/1/url/"+shortUrlRequest.longUrl().hashCode();
 
         // Save to the database
         ShortUrl newShortUrl = new ShortUrl();
-        newShortUrl.setLongUrl(shortUrlRequest.getLongUrl());
+        newShortUrl.setLongUrl(shortUrlRequest.longUrl());
         newShortUrl.setShortUrl(shortUrl);
         newShortUrl.setExpirationTime(LocalDateTime.now().plusHours(2));
-        newShortUrl.setShortUrlHash(""+shortUrlRequest.getLongUrl().hashCode());
+        newShortUrl.setShortUrlHash(""+shortUrlRequest.longUrl().hashCode());
         ShortUrl shortUrlResponse =  shortUrlRepository.save(newShortUrl);
         BeanUtils.copyProperties(shortUrlResponse,response);
 

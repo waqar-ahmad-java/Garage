@@ -1,4 +1,4 @@
-package com.waqar.ship.shorturl.config;
+package com.waqar.garage.shorturl.config;
 
 
 import io.opentelemetry.api.OpenTelemetry;

@@ -1,6 +1,4 @@
-package com.waqar.ship.shorturl;
-
-import org.springframework.cache.annotation.Cacheable;
+package com.waqar.garage.shorturl;
 
 public interface ShortUrlService {
     ShortUrlResponse createShortUrl(ShortUrlRequest longUrl);

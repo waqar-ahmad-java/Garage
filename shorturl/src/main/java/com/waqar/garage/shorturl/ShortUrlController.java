@@ -1,4 +1,4 @@
-package com.waqar.ship.shorturl;
+package com.waqar.garage.shorturl;
 
 import io.micrometer.observation.annotation.Observed;
 import org.slf4j.Logger;

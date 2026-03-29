@@ -1,4 +1,4 @@
-package com.waqar.ship.shorturl;
+package com.waqar.garage.shorturl;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

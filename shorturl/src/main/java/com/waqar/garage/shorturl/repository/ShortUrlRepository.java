@@ -1,15 +1,10 @@
-package com.waqar.ship.shorturl.repository;
+package com.waqar.garage.shorturl.repository;
 
-import com.waqar.ship.shorturl.entity.ShortUrl;
-import jakarta.persistence.QueryHint;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
+import com.waqar.garage.shorturl.entity.ShortUrl;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-import java.util.List;
 
 
 @Repository

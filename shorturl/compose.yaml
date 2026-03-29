@@ -5,6 +5,9 @@ services:
       - '3000:3000'
       - '4317:4317'
       - '4318:4318'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
 #  redis:
 #    image: 'redis'
 #    ports:
