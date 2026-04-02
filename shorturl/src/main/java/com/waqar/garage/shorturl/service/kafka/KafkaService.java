@@ -6,10 +6,14 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaServiceImpl implements KafkaService {
+public class KafkaService {
 
     @Autowired
     private KafkaTemplate<String, KafkaNotificationRequest> kakfaTemplate;
 
+    public String sendNotification(KafkaNotificationRequest kafkaNotificationRequest){
+        kakfaTemplate.send("shorturl-notification",kafkaNotificationRequest);
+        return "Email Notificaiton sent";
+    }
 
 }

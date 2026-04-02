@@ -1,19 +1,23 @@
-package com.waqar.garage.shorturl.service.kafka;
+package com.waqar.garage.consumer.service.kafka;
 
-import com.waqar.garage.shorturl.dto.KafkaNotificationRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
+import com.waqar.garage.consumer.dto.KafkaNotificationRequest;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
 public class KafkaService {
 
-    @Autowired
-    private KafkaTemplate<String, KafkaNotificationRequest> kakfaTemplate;
+    private String notification;
 
-    public String sendnotification(KafkaNotificationRequest kafkaNotificationRequest){
-        kakfaTemplate.send("shorturl-notification",kafkaNotificationRequest);
-        return "Email Notificaiton sent";
+    @KafkaListener(topics="shorturl-notification", groupId = "shorturl-group")
+    public void getNotification(KafkaNotificationRequest kafkaNotificationRequest){
+        notification = kafkaNotificationRequest+" Got notification";
+        System.out.println(notification);
     }
+
+    public String getNotification(){
+        return notification;
+    }
+
 
 }

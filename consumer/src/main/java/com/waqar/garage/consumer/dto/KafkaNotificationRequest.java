@@ -1,4 +1,4 @@
-package com.waqar.garage.shorturl.dto;
+package com.waqar.garage.consumer.dto;
 
 public record KafkaNotificationRequest(String type, String message) {
 }
