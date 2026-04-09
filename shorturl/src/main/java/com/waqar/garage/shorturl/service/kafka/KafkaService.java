@@ -12,7 +12,7 @@ public class KafkaService {
     private KafkaTemplate<String, KafkaNotificationRequest> kakfaTemplate;
 
     public String sendNotification(KafkaNotificationRequest kafkaNotificationRequest){
-        kakfaTemplate.send("shorturl-notification",kafkaNotificationRequest);
+        kakfaTemplate.send("shorturl-notification","testNotification",kafkaNotificationRequest);
         return "Email Notificaiton sent";
     }
 
