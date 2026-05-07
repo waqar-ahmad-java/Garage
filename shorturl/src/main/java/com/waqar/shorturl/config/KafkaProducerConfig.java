@@ -1,6 +1,6 @@
-package com.waqar.garage.shorturl.config;
+package com.waqar.shorturl.config;
 
-import com.waqar.garage.shorturl.dto.KafkaNotificationRequest;
+import com.waqar.shorturl.dto.KafkaNotificationRequest;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

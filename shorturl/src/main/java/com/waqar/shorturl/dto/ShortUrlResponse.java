@@ -1,4 +1,4 @@
-package com.waqar.garage.shorturl.dto;
+package com.waqar.shorturl.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

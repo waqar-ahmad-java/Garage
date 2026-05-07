@@ -1,15 +1,15 @@
-package com.waqar.garage.shorturl.service;
+package com.waqar.shorturl.service;
 
-import com.waqar.garage.shorturl.dto.ShortUrlRequest;
-import com.waqar.garage.shorturl.dto.ShortUrlResponse;
-import com.waqar.garage.shorturl.repository.ShortUrlRepository;
+import com.waqar.shorturl.dto.ShortUrlRequest;
+import com.waqar.shorturl.dto.ShortUrlResponse;
+import com.waqar.shorturl.repository.ShortUrlRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.waqar.garage.shorturl.entity.ShortUrl;
+import com.waqar.shorturl.entity.ShortUrl;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

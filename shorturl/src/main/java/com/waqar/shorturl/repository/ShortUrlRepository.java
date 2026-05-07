@@ -1,6 +1,6 @@
-package com.waqar.garage.shorturl.repository;
+package com.waqar.shorturl.repository;
 
-import com.waqar.garage.shorturl.entity.ShortUrl;
+import com.waqar.shorturl.entity.ShortUrl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

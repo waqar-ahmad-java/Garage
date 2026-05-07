@@ -1,8 +1,8 @@
-package com.waqar.garage.shorturl.controller;
+package com.waqar.shorturl.controller;
 
-import com.waqar.garage.shorturl.dto.ShortUrlRequest;
-import com.waqar.garage.shorturl.dto.ShortUrlResponse;
-import com.waqar.garage.shorturl.service.ShortUrlService;
+import com.waqar.shorturl.dto.ShortUrlRequest;
+import com.waqar.shorturl.dto.ShortUrlResponse;
+import com.waqar.shorturl.service.ShortUrlService;
 import io.micrometer.observation.annotation.Observed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

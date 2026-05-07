@@ -1,6 +1,6 @@
-package com.waqar.garage.shorturl.service.kafka;
+package com.waqar.shorturl.service.kafka;
 
-import com.waqar.garage.shorturl.dto.KafkaNotificationRequest;
+import com.waqar.shorturl.dto.KafkaNotificationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

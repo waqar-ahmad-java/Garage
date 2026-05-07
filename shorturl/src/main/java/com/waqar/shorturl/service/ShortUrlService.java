@@ -1,7 +1,7 @@
-package com.waqar.garage.shorturl.service;
+package com.waqar.shorturl.service;
 
-import com.waqar.garage.shorturl.dto.ShortUrlRequest;
-import com.waqar.garage.shorturl.dto.ShortUrlResponse;
+import com.waqar.shorturl.dto.ShortUrlRequest;
+import com.waqar.shorturl.dto.ShortUrlResponse;
 
 public interface ShortUrlService {
     ShortUrlResponse createShortUrl(ShortUrlRequest longUrl);

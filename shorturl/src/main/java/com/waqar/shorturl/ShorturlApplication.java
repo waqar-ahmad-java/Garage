@@ -1,4 +1,4 @@
-package com.waqar.garage.shorturl;
+package com.waqar.shorturl;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
