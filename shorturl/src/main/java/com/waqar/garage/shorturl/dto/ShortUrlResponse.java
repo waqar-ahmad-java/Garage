@@ -1,6 +1,4 @@
-package com.waqar.garage.shorturl;
-
-import lombok.Data;
+package com.waqar.garage.shorturl.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

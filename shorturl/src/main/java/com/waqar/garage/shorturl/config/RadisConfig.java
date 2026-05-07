@@ -1,6 +1,6 @@
 package com.waqar.garage.shorturl.config;
 
-import com.waqar.garage.shorturl.ShortUrlResponse;
+import com.waqar.garage.shorturl.dto.ShortUrlResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
