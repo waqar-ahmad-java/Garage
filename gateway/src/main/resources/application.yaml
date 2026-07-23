@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: gateway
+
+  cloud:
+    gateway:
+      route:
+        -id: short-url-route
+        uri:
+        predicate:
