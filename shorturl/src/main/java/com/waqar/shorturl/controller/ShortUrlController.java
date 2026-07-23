@@ -31,7 +31,7 @@ public class ShortUrlController {
 
     @GetMapping(value = "/{shortUrl}")
     @Observed(name ="getUrl.count")
-    public ResponseEntity<String> getUrl(@PathVariable String shortUrl) throws InterruptedException {
+    public ResponseEntity<String> getUrl(@RequestParam String shortUrl) throws InterruptedException {
         log.info("Controller getUrl started");
         ShortUrlResponse longUrl = shortUrlService.getLongUrl(shortUrl);
 
