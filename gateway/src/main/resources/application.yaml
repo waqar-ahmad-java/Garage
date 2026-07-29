@@ -1,10 +1,17 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: gateway
 
   cloud:
     gateway:
-      route:
-        -id: short-url-route
-        uri:
-        predicate:
+      routes:
+        - id: short-url-route
+          uri: https://localhost:8443
+          predicates:
+            - Path=/api/{version}/url/**
+      httpclient:
+        ssl:
+          use-insecure-trust-manager: true

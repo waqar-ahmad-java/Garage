@@ -23,6 +23,12 @@ public class ShortUrlController {
         this.shortUrlService = shortUrlService;
     }
 
+    @GetMapping(value = "")
+    public ResponseEntity<?> getAllUrl() {
+        log.info("Controller all urls");
+        return new ResponseEntity<>(shortUrlService.getAllShortUrls(), HttpStatus.OK);
+
+    }
     @PostMapping(value = "/create")
     public ResponseEntity<String> createUrl(@RequestBody ShortUrlRequest longUrl){
         ShortUrlResponse response = shortUrlService.createShortUrl(longUrl);
