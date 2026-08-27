@@ -1,10 +1,41 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: gateway
-
   cloud:
     gateway:
-      route:
-        -id: short-url-route
-        uri:
-        predicate:
+      server:
+        webmvc: # <--- Modern nested hierarchy structure
+          routes:
+            - id: short-url-root
+              uri: http://localhost:8080
+              predicates:
+                - Path=/api/**
+              filters:
+                - AddRequestHeader=X-Gateway-Source, API-Gateway
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+  otlp:
+    metrics:
+      export:
+        url: http://localhost:4318/v1/metrics
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          endpoint: http://localhost:4318/v1/traces
+    logging:
+      export:
+        otlp:
+          endpoint: http://localhost:4318/v1/logs

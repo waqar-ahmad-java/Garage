@@ -12,11 +12,14 @@ import org.springframework.stereotype.Service;
 import com.waqar.shorturl.entity.ShortUrl;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Service
-public class ShortUrlServiceImpl implements ShortUrlService{
+public class ShortUrlServiceImpl implements ShortUrlService {
 
     private final ShortUrlRepository shortUrlRepository;
 
@@ -68,8 +71,22 @@ public class ShortUrlServiceImpl implements ShortUrlService{
     }
 
     @Override
+    public Set<ShortUrlResponse> getAllShortUrls() {
+        return shortUrlRepository.findAll()
+                .stream()
+                .map(entity -> {
+                    ShortUrlResponse response = new ShortUrlResponse();
+                    BeanUtils.copyProperties(entity, response);
+                    return response;
+                })
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+    }
+
+    @Override
     @CacheEvict(cacheNames = {"urlCache"}, allEntries = true)
     public void evictCache() {
         System.out.println("Cache cleared");
     }
+
+
 }

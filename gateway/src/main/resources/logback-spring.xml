@@ -3,8 +3,7 @@
     <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg traceId=%X{traceId:-} spanId=%X{spanId:-} traceFlags=%X{traceFlags:-}%n"/>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-    <appender name="OTEL" class="io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender">
-    </appender>
+    <appender name="OTEL" class="io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender"/>
 
     <root level="INFO">
         <appender-ref ref="OTEL"/>
