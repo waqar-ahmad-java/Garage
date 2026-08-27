@@ -13,9 +13,16 @@ logging:
     org.springframework.boot.docker.compose: DEBUG
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
   tracing:
     sampling:
-      probability: 1.0  # 100% sampling for development
+      probability: 1.0
   otlp:
     metrics:
       export:
@@ -29,7 +36,3 @@ management:
       export:
         otlp:
           endpoint: http://localhost:4318/v1/logs
-  endpoints:
-    web:
-      exposure:
-        include: "*"

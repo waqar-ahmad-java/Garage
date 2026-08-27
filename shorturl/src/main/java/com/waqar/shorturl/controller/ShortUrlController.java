@@ -4,10 +4,12 @@ import com.waqar.shorturl.dto.ShortUrlRequest;
 import com.waqar.shorturl.dto.ShortUrlResponse;
 import com.waqar.shorturl.service.ShortUrlService;
 import io.micrometer.observation.annotation.Observed;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -24,7 +26,7 @@ public class ShortUrlController {
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<?> getAllUrl() {
+    public ResponseEntity<?> getAllUrl(HttpServletRequest httpServletRequest) {
         log.info("Controller all urls");
         return new ResponseEntity<>(shortUrlService.getAllShortUrls(), HttpStatus.OK);
 
