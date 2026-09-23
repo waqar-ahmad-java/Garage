@@ -15,11 +15,15 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import com.waqar.utils.base62.Base62;
 
 
 @Service
 public class ShortUrlServiceImpl implements ShortUrlService {
+
+    private final AtomicInteger counter = new AtomicInteger();
 
     private final ShortUrlRepository shortUrlRepository;
 
@@ -41,15 +45,17 @@ public class ShortUrlServiceImpl implements ShortUrlService {
             return response;
         }
 
+        String shortUrlHash = Base62.getEncoder().encode(counter.incrementAndGet());
+
         // Generate a short URL (this is just an example, replace with your logic)
-        String shortUrl = "http://localhost:8080/api/1/url/"+shortUrlRequest.longUrl().hashCode();
+        String shortUrl = "http://localhost:8080/api/1/url/" + shortUrlHash;
 
         // Save to the database
         ShortUrl newShortUrl = new ShortUrl();
         newShortUrl.setLongUrl(shortUrlRequest.longUrl());
         newShortUrl.setShortUrl(shortUrl);
         newShortUrl.setExpirationTime(LocalDateTime.now().plusHours(2));
-        newShortUrl.setShortUrlHash(""+shortUrlRequest.longUrl().hashCode());
+        newShortUrl.setShortUrlHash(shortUrlHash);
         ShortUrl shortUrlResponse =  shortUrlRepository.save(newShortUrl);
         BeanUtils.copyProperties(shortUrlResponse,response);
 
